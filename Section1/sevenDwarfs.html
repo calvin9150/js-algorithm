@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <pre>
+      7개의 수가 주어지면 그 숫자 중 가장 작은 수를 출력하는 프로그램을 작성하세요.
+      ▣ 입력설명
+      첫 번째 줄에 7개의 수가 주어진다.
+      ▣ 출력설명
+      첫 번째 줄에 가장 작은 값을 출력한다.
+    </pre>
+    <script>
+      function solution(arr) {
+        const reducer = (acc, cur) => acc + cur;
+
+        const allHeight = arr.reduce(reducer);
+
+        for (let i = 0; i < arr.length; i++) {
+          for (let j = 0; j < arr.length; j++) {
+            if ((arr[i] !== arr[j] && arr[i] + arr[j]) === allHeight - 100) {
+              arr.splice(i, 1);
+              arr.splice(j - 1, 1);
+              return arr;
+            }
+          }
+        }
+      }
+
+      let arr = [20, 7, 23, 19, 10, 15, 25, 8, 13];
+      console.log(solution(arr));
+
+      // 해설
+      function solution2(arr) {
+        let answer = arr;
+        let sum = answer.reduce((a, b) => a + b, 0);
+        for (let i = 0; i < 8; i++) {
+          for (let j = i + 1; j < 9; j++) {
+            if (sum - (answer[i] + answer[j]) == 100) {
+              answer.splice(j, 1);
+              answer.splice(i, 1);
+            }
+          }
+        }
+        return answer;
+      }
+
+      let arr = [20, 7, 23, 19, 10, 15, 25, 8, 13];
+      console.log(solution2(arr));
+    </script>
+  </body>
+</html>
