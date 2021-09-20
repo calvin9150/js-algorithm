@@ -18,14 +18,31 @@
     </pre>
     <script>
       function solution(sample) {
-        return answer.length;
+        const arr = sample.split("");
+        const answer = arr.map((v) => {
+          if (v.charCodeAt() > 96) {
+            return v.toUpperCase();
+          } else {
+            return v.toLowerCase();
+          }
+        });
+        return answer;
       }
 
       const sample = "StuDY";
       console.log(solution(sample));
 
-      let str = "KoreaTimeGood";
-      console.log(solution2(str));
+      // 해설
+      function solution2(s) {
+        let answer = "";
+        for (let x of s) {
+          if (x === x.toUpperCase()) answer += x.toLowerCase();
+          else answer += x.toUpperCase();
+        }
+        return answer;
+      }
+
+      console.log(solution2("StuDY"));
     </script>
   </body>
 </html>
